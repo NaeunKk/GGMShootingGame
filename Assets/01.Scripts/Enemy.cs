@@ -101,7 +101,13 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            print("³¢¾î¿ä!");
+        }
+    }
     IEnumerator ColorChange()
     {
         sr.color = Color.red;

@@ -6,6 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private Text scoreTxt;
+    public static UIManager instance;
+    public void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
+    public void Start()
+    {
+        DisplayScoreUI();
+    }
     public void MenuScene()
     {
         SceneManager.LoadScene("Menu");
@@ -13,5 +26,10 @@ public class UIManager : MonoBehaviour
     public void InGameScene()
     {
         SceneManager.LoadScene("InGame");
+    }
+
+    public void DisplayScoreUI()
+    {
+        scoreTxt.text = $"Score : {GameManager.instance.currentScore}";
     }
 }

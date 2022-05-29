@@ -26,5 +26,6 @@ public class GameManager : MonoBehaviour
         {
             JsonManager.instance.Data.maxScore = currentScore;
         }
+        UIManager.instance.DisplayScoreUI();
     }
 }

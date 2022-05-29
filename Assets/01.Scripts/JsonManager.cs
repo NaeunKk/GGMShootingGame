@@ -43,10 +43,6 @@ public class JsonManager : MonoBehaviour
         File.WriteAllText(SAVE_PATH + SAVE_FILENAME, json, System.Text.Encoding.UTF8);
 
     }
-    private void Update()
-    {
-        DisplayUI();
-    }
     public void Init()
     {
         SAVE_PATH = Application.dataPath + "/Save";
@@ -54,10 +50,5 @@ public class JsonManager : MonoBehaviour
         {
             Directory.CreateDirectory(SAVE_PATH);
         }
-    }
-
-    public void DisplayUI()
-    {
-        scoreTxt.text = $"Score : {data.maxScore}";
     }
 }
