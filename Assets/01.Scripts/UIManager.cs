@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private bool isMenu = false;
     [SerializeField] private Text scoreTxt;
+
+    private Text _titleTxt;
+
     public static UIManager instance;
     public void Awake()
     {
@@ -14,9 +19,15 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
         }
+
     }
+
     public void Start()
     {
+        _titleTxt = GameObject.Find("Canvas/GameTitle").GetComponent<Text>();
+
+        _titleTxt.DOText("Run & Gun", 2f);
+
         DisplayScoreUI();
     }
     public void MenuScene()
@@ -30,6 +41,10 @@ public class UIManager : MonoBehaviour
 
     public void DisplayScoreUI()
     {
-        scoreTxt.text = $"Score : {GameManager.instance.currentScore}";
+        if (!isMenu)
+        {
+            scoreTxt.text = $"Score : {GameManager.instance.currentScore}";
+
+        }
     }
 }
