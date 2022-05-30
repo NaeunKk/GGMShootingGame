@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] GameObject enemy;
-    [SerializeField] int spawnTime = 2;
+    [SerializeField] List<Transform> spawnPos = new List<Transform>();
+    [SerializeField] GameObject enemyPrefab;
+
+    int randIndex = 0;
 
     private void Start()
     {
@@ -15,12 +17,16 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            if(Enemy.enemyCount < 10)
+            if (Enemy.enemyCount < 10)
             {
-            Vector3 randPos = new Vector3(Random.Range(-7, 28), Random.Range(12, 6), 0);
-            PoolingManager.Instance.Respawn(enemy, PoolingManager.Instance.enemyPooler, randPos);
+                randIndex = Random.Range(0, spawnPos.Count);
+
+                //Vector3 randPos = new Vector3(Random.Range(-7, 28),
+                //Random.Range(12, 6), 0);
+                PoolingManager.Instance.Respawn(enemyPrefab,
+                    PoolingManager.Instance.enemyPooler, spawnPos[randIndex].position);
             }
-            yield return new WaitForSeconds(spawnTime);
+            yield return new WaitForSeconds(1);
         }
     }
 }
