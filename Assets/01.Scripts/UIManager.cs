@@ -25,19 +25,19 @@ public class UIManager : MonoBehaviour
     public void Start()
     {
         _titleTxt = GameObject.Find("Canvas/GameTitle").GetComponent<Text>();
+        _titleTxt.DOText("Run & Gun", 3f);
 
-        _titleTxt.DOText("Run & Gun", 2f);
+        Debug.Log("Tlqkf");
 
         DisplayScoreUI();
+
+        
     }
     public void MenuScene()
     {
         SceneManager.LoadScene("Menu");
     }
-    public void InGameScene()
-    {
-        SceneManager.LoadScene("InGame");
-    }
+    
 
     public void DisplayScoreUI()
     {
@@ -47,4 +47,6 @@ public class UIManager : MonoBehaviour
 
         }
     }
+
+    
 }
