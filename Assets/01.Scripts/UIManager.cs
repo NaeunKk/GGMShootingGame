@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private Image startFade;
     [SerializeField] private bool isMenu = false;
     [SerializeField] private Text scoreTxt;
 
@@ -15,7 +16,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -24,6 +25,9 @@ public class UIManager : MonoBehaviour
 
     public void Start()
     {
+
+        startFade.DOFade(0, 2f);
+
         _titleTxt = GameObject.Find("Canvas/GameTitle").GetComponent<Text>();
         _titleTxt.DOText("Run & Gun", 3f);
 
@@ -31,13 +35,21 @@ public class UIManager : MonoBehaviour
 
         DisplayScoreUI();
 
-        
+
+        //startFadeOut.gameObject.SetActive(false);
     }
     public void MenuScene()
     {
-        SceneManager.LoadScene("Menu");
+        startFade.DOFade(1, 2f);
+        startFade.gameObject.SetActive(true);
+        StartCoroutine(SceneMoveMenu());
     }
-    
+    public void InGameScene()
+    {
+        startFade.DOFade(1, 2f);
+        startFade.gameObject.SetActive(true);
+        StartCoroutine(SceneMoveInGame());
+    }
 
     public void DisplayScoreUI()
     {
@@ -48,5 +60,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    
+    IEnumerator SceneMoveInGame()
+    {
+        yield return new WaitForSeconds(2.5f);
+        SceneManager.LoadScene("InGame");
+    }
+    IEnumerator SceneMoveMenu()
+    {
+        yield return new WaitForSeconds(2.5f);
+        SceneManager.LoadScene("Menu");
+    }
 }

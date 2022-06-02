@@ -91,6 +91,7 @@ public class PlayerMove : MonoBehaviour
         {
             JsonManager.instance.Save();
             gameOver.SetActive(true);
+            GameManager.instance.DisplayScore();
         }
 
         if (collision.gameObject.CompareTag("Coin"))

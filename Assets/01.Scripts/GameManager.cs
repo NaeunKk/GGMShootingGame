@@ -28,4 +28,9 @@ public class GameManager : MonoBehaviour
         }
         UIManager.instance.DisplayScoreUI();
     }
+    public void DisplayScore()
+    {
+        bestText.text = $"Best Score : {JsonManager.instance.Data.maxScore}";
+        scoreText.text = $"Score : {currentScore}";
+    }
 }
