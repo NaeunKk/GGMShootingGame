@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image startFade;
     [SerializeField] private bool isMenu = false;
     [SerializeField] private Text scoreTxt;
+    [SerializeField] private Image htp;
 
     private Text _titleTxt;
 
@@ -58,6 +59,15 @@ public class UIManager : MonoBehaviour
             scoreTxt.text = $"Score : {GameManager.instance.currentScore}";
 
         }
+    }
+
+    public void HowToPlayOpen()
+    {
+        htp.gameObject.SetActive(true);
+    }
+    public void HowToPlayClose()
+    {
+        htp.gameObject.SetActive(false);
     }
 
     IEnumerator SceneMoveInGame()

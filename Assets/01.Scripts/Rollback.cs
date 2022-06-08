@@ -6,6 +6,7 @@ public class Rollback : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] private Vector3 respawnPos = new Vector3(-17, 3, 0);
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))

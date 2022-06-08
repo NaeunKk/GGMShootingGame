@@ -99,6 +99,9 @@ public class PlayerMove : MonoBehaviour
             GameManager.instance.PlusScore();
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Rollback"))
+            hp--;
     }
     IEnumerator ifHit()
     {

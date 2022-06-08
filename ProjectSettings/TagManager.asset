@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Enemy
   - Coin
+  - Rollback
   layers:
   - Default
   - TransparentFX
