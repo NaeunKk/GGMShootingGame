@@ -10,8 +10,7 @@ public class PoolingManager : MonoBehaviour
     public Queue<GameObject> enemyPooler = new Queue<GameObject>();
     public Queue<GameObject> coinPooler = new Queue<GameObject>();
 
-    public Transform minPos;
-    public Transform maxPos;
+   
 
     private void Awake()
     {

@@ -8,6 +8,7 @@ public class LocalPoolManager : MonoBehaviour
     public PoolAbleObject PoolTarget { get { return poolTarget; } set { poolTarget = value; } }
     Queue<PoolAbleObject> poolQueue = new Queue<PoolAbleObject>();
     PoolType type;
+
     /// <summary>
     /// 초기 지정 갯수만큼 오브젝트 인스턴스화
     /// </summary>
@@ -26,6 +27,7 @@ public class LocalPoolManager : MonoBehaviour
             poolQueue.Enqueue(obj);
         }
     }
+
     /// <summary>
     /// 꺼내오기
     /// </summary>
@@ -46,6 +48,7 @@ public class LocalPoolManager : MonoBehaviour
         obj.Init_Pop();
         return obj;
     }
+
     /// <summary>
     /// 넣기
     /// </summary>

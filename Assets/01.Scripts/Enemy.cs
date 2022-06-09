@@ -5,19 +5,27 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    #region 생성 관련
+    [Header("생성 관련")]
     public static int enemyCount;
     Rigidbody2D rb;
     private float thinkTime;
+    #endregion
+    #region 움직임 관련
+    [Header("움직임 관련")]
     [SerializeField] private int nextMove;
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private int maxHp;
-    [SerializeField] private int currentHp;
-    [SerializeField] private SpriteRenderer sr;
     [SerializeField] Transform targetTrm;
-
     bool isFollow = false;
     float speed = 5f;
     Vector3 dir;
+    #endregion
+    #region 피격 관련
+    [Header("피격 관련")]
+    [SerializeField] private int maxHp;
+    [SerializeField] private int currentHp;
+    [SerializeField] private SpriteRenderer sr;
+    #endregion
 
     void Awake()
     {
@@ -31,10 +39,12 @@ public class Enemy : MonoBehaviour
         currentHp = maxHp;
         enemyCount++;
     }
+
     private void OnDisable()
     {
         enemyCount--;
     }
+
     void FixedUpdate()
     {
         if (!isFollow)
@@ -56,6 +66,7 @@ public class Enemy : MonoBehaviour
             Invoke("Think", thinkTime);
         }
     }
+
     private void Update()
     {
         if(nextMove >= 1)
@@ -72,10 +83,12 @@ public class Enemy : MonoBehaviour
             if (transform.position.x < targetTrm.position.x)
                 transform.localScale = new Vector3(-1, 1, 1);
             else transform.localScale = new Vector3(1, 1, 1);
-
         }
     }
 
+    /// <summary>
+    /// 적 방향 전환 함수
+    /// </summary>
     void Think()
     {
         nextMove = UnityEngine.Random.Range(-1, 2);
@@ -93,12 +106,14 @@ public class Enemy : MonoBehaviour
             StartCoroutine(ColorChange());
             currentHp--;
             StartCoroutine(StopFollow());
-            Destroy(collision.gameObject);
+            PoolManager1.Instance.Enqueue(collision.gameObject);
         }
 
         if (currentHp == 0)
         {
-            Destroy(gameObject);
+            PoolManager1.Instance.Enqueue(gameObject);
+            isFollow = false;
+            sr.color = Color.white;
         }
     }
     //private void OnTriggerStay2D(Collider2D collision)
@@ -108,12 +123,18 @@ public class Enemy : MonoBehaviour
     //        print("끼어요!");
     //    }
     //}
+
+    /// <summary>
+    /// 피격 시 색상 전환 함수
+    /// </summary>
+    /// <returns></returns>
     IEnumerator ColorChange()
     {
         sr.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         sr.color = Color.white;
     }
+
     IEnumerator StopFollow()
     {
         yield return new WaitForSeconds(3);

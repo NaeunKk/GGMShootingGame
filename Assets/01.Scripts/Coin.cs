@@ -5,28 +5,36 @@ using UnityEngine.UI;
 
 public class Coin : MonoBehaviour
 {
-    int coin;
+    #region
     [SerializeField] GameObject coinPrefab;
-    int spawnTime = 5;
+    public int coin;
+    int spawnTime = 4;
+    #endregion
 
     private void Start()
     {
         StartCoroutine(CoinSpawn());
     }
 
+    /// <summary>
+    /// 코인 생성 함수
+    /// </summary>
+    /// <returns></returns>
     IEnumerator CoinSpawn()
     {
-        while (true)
+        if (coin <= 6)
         {
-            coin++;
-            if(coin <= 6)
+            while (true)
             {
-                Vector3 randPos = new Vector3(Random.Range(-6, 26), Random.Range(5, 12), 0);
-                PoolingManager.Instance.Respawn(coinPrefab, PoolingManager.Instance.coinPooler, 
-                    randPos);
+                coin++;
+                Vector3 randPos = new Vector3(Random.Range(-6, 26), Random.Range(28, 6), 0);
+                GameObject temp = PoolManager1.Instance.Dequeue(coinPrefab);
+                temp.transform.position = randPos;
                 yield return new WaitForSeconds(spawnTime);
             }
         }
+        else if (coin > 6)
+            yield return null;
     }
 
     private void OnCollisionStay2D(Collision2D collision)

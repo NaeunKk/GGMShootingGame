@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    #region 총알 발사 관련
+    [Header("총알 발사 관련")]
     [SerializeField] private float delay;
     [SerializeField] private float accuracy;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform firePos;
-    [SerializeField] AudioClip fireClip;
+    //[SerializeField] AudioClip fireClip;
+    #endregion
+
+    #region 총알 방향 관련
+    [Header("총알 방향 관련")]
     [SerializeField] Transform playerTrm;//SpriteRenderer playerRendere;
     private Transform player;
+    #endregion
     [SerializeField] Camera cam;
 
     void Start()
@@ -42,12 +49,17 @@ public class Weapon : MonoBehaviour
         transform.eulerAngles = new Vector3(0, 0, angle + 180);//fixAngle);
     }
 
+    /// <summary>
+    /// 총알 발사
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Shoot()
     {
         while (true)
         {
             yield return new WaitUntil (()=> Input.GetMouseButton(0));
-            GameObject temp = PoolingManager.Instance.Respawn(bullet, PoolingManager.Instance.bulletPooler, firePos.position);
+            GameObject temp = PoolManager1.Instance.Dequeue(bullet);
+            temp.transform.position = firePos.position;
             Vector3 tempRotate = temp.transform.eulerAngles; //총알 로테이션 캐싱
             tempRotate.z = transform.rotation.eulerAngles.z; //총알 rotaition.z = 건 rotation.z
             temp.transform.rotation = Quaternion.Euler(tempRotate); //바꿔준 각도 적용

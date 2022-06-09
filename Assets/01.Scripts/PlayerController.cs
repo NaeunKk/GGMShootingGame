@@ -5,31 +5,39 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 //using UnrealEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
+    #region 움직임 관련
     [SerializeField] float speed;
     [SerializeField] float jumpPower;
-    [SerializeField] private Animator move;
-    [SerializeField] private SpriteRenderer sr;
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private int hp;
+    [SerializeField] private Animator move;
+    //[SerializeField] AudioSource foot;
+    bool isJumping;
+    bool isGround;
+    Rigidbody2D rb;
+    Vector2 overlapPos;
+    #endregion
+
+    #region 피격 관련
+    [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Text hpTxt; 
-    [SerializeField] AudioSource foot;
+    [SerializeField] private int hp;
+    BoxCollider2D collider;
+    #endregion
+
+    #region 점수 관련
     [SerializeField] GameObject coin;
     [SerializeField] GameObject gameOver;
+    #endregion
 
-    BoxCollider2D collider;
-    Rigidbody2D rb;
-    bool isJumping;
-    Vector2 overlapPos;
-    bool isGround;
 
     void Start()
     {
         collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        foot = GetComponent<AudioSource>();
+        //foot = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -62,14 +70,18 @@ public class PlayerController : MonoBehaviour
             move.SetBool("IsMoving", false);
         }
 
-        MoveSound();
+        //MoveSound();
         Jump();
     }
 
-   void MoveSound()
+   /*void MoveSound()
     {
         foot.Play();
-    }
+    }*/
+
+   /// <summary>
+   /// 점프 함수
+   /// </summary>
     void Jump()
     {
         if (Input.GetKeyDown(KeyCode.W) && isGround)
@@ -103,6 +115,11 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Rollback"))
             hp--;
     }
+
+    /// <summary>
+    /// 데미지 함수
+    /// </summary>
+    /// <returns></returns>
     IEnumerator ifHit()
     {
         sr.color = Color.red;
