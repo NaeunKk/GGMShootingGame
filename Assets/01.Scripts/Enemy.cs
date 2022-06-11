@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int maxHp;
     [SerializeField] private int currentHp;
     [SerializeField] private SpriteRenderer sr;
+    [SerializeField] Animation anim;
     #endregion
 
     void Awake()

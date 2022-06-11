@@ -489,9 +489,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startFade: {fileID: 1133588812}
+  htp: {fileID: 1560539930}
   isMenu: 1
   scoreTxt: {fileID: 1311063252}
-  htp: {fileID: 1560539930}
 --- !u!4 &593288916
 Transform:
   m_ObjectHideFlags: 0

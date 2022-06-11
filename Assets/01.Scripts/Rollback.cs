@@ -17,17 +17,15 @@ public class Rollback : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Vector3 randPos = new Vector3(Random.Range(-6, 26), Random.Range(28, 6), 0);
         if (collision.collider.CompareTag("Player"))
         {
             player.transform.position = respawnPos;
         }
-        if (collision.collider.CompareTag("Enemy"))
+        else if (collision.collider.CompareTag("Enemy"))
         {
-            PoolManager1.Instance.Enqueue(enemy);
-        }
-        if (collision.collider.CompareTag("Coin"))
-        {
-            PoolManager1.Instance.Enqueue(coin);
+            Debug.Log("aa");
+            collision.transform.position = randPos;
         }
     }
 }
