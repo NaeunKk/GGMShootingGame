@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
 {
     #region 움직임 관련
     [SerializeField] float speed;
-    [SerializeField] float jumpPower;
+    float jumpPower;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Animator move;
     //[SerializeField] AudioSource foot;
@@ -74,7 +74,7 @@ public class PlayerMove : MonoBehaviour
         Jump();
 
         if (hp >= 50)
-            GameClear.SetActive(true);
+            gameClear.SetActive(true);
     }
 
    /*void MoveSound()
