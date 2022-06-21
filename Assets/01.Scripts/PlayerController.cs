@@ -29,8 +29,8 @@ public class PlayerMove : MonoBehaviour
     #region 점수 관련
     [SerializeField] GameObject coin;
     [SerializeField] GameObject gameOver;
+    [SerializeField] GameObject gameClear;
     #endregion
-
 
     void Start()
     {
@@ -72,6 +72,9 @@ public class PlayerMove : MonoBehaviour
 
         //MoveSound();
         Jump();
+
+        if (hp >= 50)
+            GameClear.SetActive(true);
     }
 
    /*void MoveSound()

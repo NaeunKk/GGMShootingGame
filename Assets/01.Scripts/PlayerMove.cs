@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioSource foot;
     [SerializeField] GameObject coin;
     [SerializeField] GameObject gameOver;
+    [SerializeField] GameObject gameClear;
 
     BoxCollider2D collider;
     Rigidbody2D rb;
@@ -69,8 +70,11 @@ public class PlayerController : MonoBehaviour
             move.SetBool("IsMoving", false);
         }
 
-        MoveSound();
+        //MoveSound();
         Jump();
+
+        if (hp >= 50)
+            gameClear.SetActive(true);
     }
 
    void MoveSound()
