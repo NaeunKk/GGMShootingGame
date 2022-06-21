@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        print($"EnemyCount : {Enemy.enemyCount}");
+        //print($"EnemyCount : {Enemy.enemyCount}");
     }
 
     /// <summary>
@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public void PlusScore()
     {
         currentScore++;
+        PlayerController.instance.hp++;
+
         if(JsonManager.instance.Data.maxScore < currentScore)
         {
             JsonManager.instance.Data.maxScore = currentScore;

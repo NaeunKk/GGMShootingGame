@@ -830,7 +830,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6447722072507503168, guid: 10f3cacccb0c4c547be76836eba20664, type: 3}
+  m_Sprite: {fileID: -1082696785551458015, guid: 1872dc9fb23c78d41a0a557e8f2fd08e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2683,8 +2683,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uCD1D\uC744 \uBC1C\uC0AC\uD574\n\uC801\uC744 \uC8FD\uC774\uACE0 \n\uCF54\uC778\uC744
-    \uC5BB\uC5B4 \n\uC810\uC218\uB97C \uC62C\uB9AC\uC138\uC694!"
+  m_Text: "\uCD1D\uC744 \uBC1C\uC0AC\uD574\n\uC801\uC744 \uCC98\uCE58\uD558\uACE0\n\uC74C\uC2DD\uC744
+    \uBA39\uC5B4\n\uC624\uB7AB\uB3D9\uC548 \uC0DD\uC874\uD558\uC138\uC694!"
 --- !u!222 &1791705497
 CanvasRenderer:
   m_ObjectHideFlags: 0

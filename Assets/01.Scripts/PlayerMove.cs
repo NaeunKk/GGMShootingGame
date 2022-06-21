@@ -7,12 +7,13 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
     [SerializeField] float speed;
     [SerializeField] float jumpPower;
     [SerializeField] private Animator move;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private int hp;
+    [SerializeField] public int hp;
     [SerializeField] private Text hpTxt; 
     [SerializeField] AudioSource foot;
     [SerializeField] GameObject coin;
@@ -23,6 +24,12 @@ public class PlayerController : MonoBehaviour
     bool isJumping;
     Vector2 overlapPos;
     bool isGround;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
 
     void Start()
     {
