@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
         startFade.DOFade(0, 2f);
 
         _titleTxt = GameObject.Find("Canvas/GameTitle").GetComponent<Text>();
-        _titleTxt.DOText("Run & Gun", 3f);
+        _titleTxt.DOText("Hungry Dino", 3f);
 
         Debug.Log("Tlqkf");
 
