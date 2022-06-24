@@ -27,5 +27,9 @@ public class Rollback : MonoBehaviour
             Debug.Log("aa");
             collision.transform.position = randPos;
         }
+        else if (collision.collider.CompareTag("Coin"))
+        {
+            collision.transform.position = randPos;
+        }
     }
 }

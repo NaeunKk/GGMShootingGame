@@ -25,28 +25,28 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int maxHp;
     [SerializeField] private int currentHp;
     [SerializeField] private SpriteRenderer sr;
-    [SerializeField] Animation anim;
+    [SerializeField] protected Animator anim;
     #endregion
 
-    void Awake()
+    protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         targetTrm = GameObject.Find("Player").GetComponent<Transform>();
         Think();
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         currentHp = maxHp;
         enemyCount++;
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         enemyCount--;
     }
 
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (!isFollow)
         {
@@ -68,29 +68,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected void Update()
     {
         if(nextMove >= 1)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1);
         }
         else if(nextMove <= 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
 
         if(isFollow)
         {
             if (transform.position.x < targetTrm.position.x)
-                transform.localScale = new Vector3(-1, 1, 1);
-            else transform.localScale = new Vector3(1, 1, 1);
+                transform.localScale = new Vector3(1, 1, 1);
+            else transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 
     /// <summary>
     /// 적 방향 전환 함수
     /// </summary>
-    void Think()
+    protected void Think()
     {
         nextMove = UnityEngine.Random.Range(-1, 2);
 
@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviour
         Invoke("Think", nextThinkTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.gameObject.CompareTag("Bullet"))
@@ -136,7 +136,7 @@ public class Enemy : MonoBehaviour
         sr.color = Color.white;
     }
 
-    IEnumerator StopFollow()
+    protected IEnumerator StopFollow()
     {
         yield return new WaitForSeconds(3);
         isFollow = false;

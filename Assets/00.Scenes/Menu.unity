@@ -1344,6 +1344,7 @@ GameObject:
   - component: {fileID: 847084073}
   - component: {fileID: 847084075}
   - component: {fileID: 847084074}
+  - component: {fileID: 847084076}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -1412,6 +1413,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847084072}
   m_CullTransparentMesh: 1
+--- !u!114 &847084076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847084072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &851400108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,18 +1570,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 45f42db09d5c612479574bb848dc2623, type: 3}
-    m_FontSize: 29
+    m_FontSize: 85
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
+    m_MaxSize: 88
+    m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: close
+  m_Text: X
 --- !u!222 &1017765466
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1742,6 +1758,7 @@ GameObject:
   - component: {fileID: 1311063251}
   - component: {fileID: 1311063253}
   - component: {fileID: 1311063252}
+  - component: {fileID: 1311063254}
   m_Layer: 5
   m_Name: GameTitle
   m_TagString: Untagged
@@ -1810,6 +1827,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311063250}
   m_CullTransparentMesh: 1
+--- !u!114 &1311063254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311063250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1338219421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,6 +1853,7 @@ GameObject:
   - component: {fileID: 1338219422}
   - component: {fileID: 1338219424}
   - component: {fileID: 1338219423}
+  - component: {fileID: 1338219425}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1889,6 +1922,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338219421}
   m_CullTransparentMesh: 1
+--- !u!114 &1338219425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338219421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1412469306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,6 +1948,7 @@ GameObject:
   - component: {fileID: 1412469307}
   - component: {fileID: 1412469309}
   - component: {fileID: 1412469308}
+  - component: {fileID: 1412469310}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1968,6 +2017,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412469306}
   m_CullTransparentMesh: 1
+--- !u!114 &1412469310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412469306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1560539929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2277,8 +2341,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uCD1D\uC744 \uBC1C\uC0AC\uD574\n\uC801\uC744 \uCC98\uCE58\uD558\uACE0\n\uC74C\uC2DD\uC744
-    \uBA39\uC5B4\n\uC624\uB7AB\uB3D9\uC548 \uC0DD\uC874\uD558\uC138\uC694!"
+  m_Text: "\uCD1D\uC744 \uBC1C\uC0AC\uD574\n\uC801\uC744 \uCC98\uCE58\uD558\uBA70\n\uACF5\uB8E1\uC758
+    \uD5C8\uAE30\uB97C \uCC44\uC6B0\uC138\uC694!"
 --- !u!222 &1791705497
 CanvasRenderer:
   m_ObjectHideFlags: 0

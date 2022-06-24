@@ -6,7 +6,10 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] List<Transform> spawnPos = new List<Transform>();
     [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject boss;
     int randIndex = 0;
+    int spawnDelay = 1;
+    int bossSpawnDelay = 30;
 
     private void Start()
     {
@@ -30,7 +33,16 @@ public class EnemySpawner : MonoBehaviour
                 GameObject temp = PoolManager1.Instance.Dequeue(enemyPrefab);
                 temp.transform.position = spawnPos[randIndex].position;
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(spawnDelay);
+        }
+    }
+    IEnumerator BossSpawn()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(bossSpawnDelay);
+            GameObject temp = PoolManager1.Instance.Dequeue(boss);
+            temp.transform.position = new Vector3(25, 13, 0);
         }
     }
 }

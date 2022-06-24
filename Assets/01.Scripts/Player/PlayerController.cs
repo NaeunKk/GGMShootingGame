@@ -12,7 +12,7 @@ public class PlayerMove : MonoBehaviour
     float jumpPower;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Animator move;
-    //[SerializeField] AudioSource foot;
+    [SerializeField] AudioSource foot;
     bool isJumping;
     bool isGround;
     Rigidbody2D rb;
@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
 
     #region 피격 관련
     [SerializeField] private SpriteRenderer sr;
-    [SerializeField] private Text hpTxt; 
+    [SerializeField] private Text hpTxt;
     [SerializeField] private int hp;
     BoxCollider2D collider;
     #endregion
@@ -37,7 +37,7 @@ public class PlayerMove : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        //foot = GetComponent<AudioSource>();
+        foot = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -56,9 +56,9 @@ public class PlayerMove : MonoBehaviour
         {
             isJumping = true;
         }
-        float h = Input.GetAxis("Horizontal") ;
+        float h = Input.GetAxis("Horizontal");
 
-        Vector2 dir = new Vector2 (h, 0);
+        Vector2 dir = new Vector2(h, 0);
         transform.Translate(dir * speed * Time.deltaTime);
 
         if (Input.GetAxis("Horizontal") != 0)
@@ -70,21 +70,22 @@ public class PlayerMove : MonoBehaviour
             move.SetBool("IsMoving", false);
         }
 
-        //MoveSound();
+        MoveSound();
         Jump();
 
         if (hp >= 50)
             gameClear.SetActive(true);
     }
 
-   /*void MoveSound()
+    void MoveSound()
     {
-        foot.Play();
-    }*/
+        if (isGround == true)
+            foot.Play();
+    }
 
-   /// <summary>
-   /// 점프 함수
-   /// </summary>
+    /// <summary>
+    /// 점프 함수
+    /// </summary>
     void Jump()
     {
         if (Input.GetKeyDown(KeyCode.W) && isGround)
@@ -92,7 +93,7 @@ public class PlayerMove : MonoBehaviour
             move.SetTrigger("isJumping");
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
-   }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -102,7 +103,7 @@ public class PlayerMove : MonoBehaviour
             StartCoroutine(ifHit());
         }
 
-        if(hp == 0)
+        if (hp == 0)
         {
             JsonManager.instance.Save();
             gameOver.SetActive(true);
