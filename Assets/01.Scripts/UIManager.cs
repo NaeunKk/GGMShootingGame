@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     #region 게임 타이틀
     private Text _titleTxt;
     #endregion
+
     public static UIManager instance;
 
     public void Awake()

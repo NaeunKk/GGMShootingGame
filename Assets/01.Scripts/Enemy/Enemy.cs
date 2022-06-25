@@ -16,14 +16,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int nextMove;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] Transform targetTrm;
-    bool isFollow = false;
+    protected bool isFollow = false;
     float speed = 5f;
     Vector3 dir;
     #endregion
     #region 피격 관련
     [Header("피격 관련")]
-    [SerializeField] private int maxHp;
-    [SerializeField] private int currentHp;
+    [SerializeField] int maxHp = 5;
+    [SerializeField] int currentHp;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] protected Animator anim;
     #endregion
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         if(nextMove >= 1)
         {

@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void DisplayScore()
     {
-        bestText.text = $"Best Score : {JsonManager.instance.Data.maxScore}";
-        scoreText.text = $"Score : {currentScore}";
+        //bestText.text = $"Best Score : {JsonManager.instance.Data.maxScore}";
+        //scoreText.text = $"Score : {currentScore}";
     }
 }

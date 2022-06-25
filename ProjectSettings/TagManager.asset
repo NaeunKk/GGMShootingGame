@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Coin
   - Rollback
+  - Boss
   layers:
   - Default
   - TransparentFX

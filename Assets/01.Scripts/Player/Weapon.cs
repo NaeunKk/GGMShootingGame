@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     [Header("총알 발사 관련")]
     [SerializeField] private float delay;
     [SerializeField] private float accuracy;
+    //[SerializeField] AudioSource shoot;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform firePos;
     //[SerializeField] AudioClip fireClip;
@@ -57,7 +58,7 @@ public class Weapon : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitUntil (()=> Input.GetMouseButton(0));
+            yield return new WaitUntil(() => Input.GetMouseButton(0));
             GameObject temp = PoolManager1.Instance.Dequeue(bullet);
             temp.transform.position = firePos.position;
             Vector3 tempRotate = temp.transform.eulerAngles; //총알 로테이션 캐싱

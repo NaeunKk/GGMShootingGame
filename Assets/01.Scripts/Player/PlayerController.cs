@@ -3,13 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 //using UnrealEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+    [SerializeField] Text gameOverTxt;
+    #region Play Time
+    [SerializeField] Text time;
+    float setTime = 180;
+    int min;
+    int sec;
+    #endregion
+
     #region 움직임 관련
     [SerializeField] float speed;
-    float jumpPower;
+    [SerializeField] float jumpPower;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Animator move;
     [SerializeField] AudioSource foot;
@@ -22,22 +32,32 @@ public class PlayerMove : MonoBehaviour
     #region 피격 관련
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Text hpTxt;
-    [SerializeField] private int hp;
+    public int hp;
     BoxCollider2D collider;
     #endregion
 
     #region 점수 관련
+    [SerializeField] float hungryTime = 3f;
     [SerializeField] GameObject coin;
     [SerializeField] GameObject gameOver;
     [SerializeField] GameObject gameClear;
+    [SerializeField] Image hungryGage;
     #endregion
 
-    void Start()
+    private void Awake()
     {
+        if (instance == null)
+            instance = this;
         collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         foot = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(PlayTime());
+        StartCoroutine(Hungry());
     }
 
     void Update()
@@ -73,8 +93,8 @@ public class PlayerMove : MonoBehaviour
         MoveSound();
         Jump();
 
-        if (hp >= 50)
-            gameClear.SetActive(true);
+        if(hp <= 0)
+            gameOver.SetActive(true);
     }
 
     void MoveSound()
@@ -92,6 +112,7 @@ public class PlayerMove : MonoBehaviour
         {
             move.SetTrigger("isJumping");
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            Debug.Log("A");
         }
     }
 
@@ -100,24 +121,26 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             hp--;
+            hungryGage.fillAmount -= 0.05f;
             StartCoroutine(ifHit());
         }
-
+/*
         if (hp == 0)
         {
             JsonManager.instance.Save();
             gameOver.SetActive(true);
-            GameManager.instance.DisplayScore();
-        }
+            //GameManager.instance.DisplayScore();
+        }*/
 
         if (collision.gameObject.CompareTag("Coin"))
         {
-            GameManager.instance.PlusScore();
-            Destroy(collision.gameObject);
+            hp++;
+            hungryGage.fillAmount += 0.05f / hp;
+            PoolManager1.Instance.Enqueue(collision.gameObject);
         }
 
         if (collision.gameObject.CompareTag("Rollback"))
-            hp--;
+            hp--; hungryGage.fillAmount -= 0.05f / hp;
     }
 
     /// <summary>
@@ -129,5 +152,44 @@ public class PlayerMove : MonoBehaviour
         sr.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         sr.color = Color.white;
+    }
+
+    IEnumerator PlayTime()
+    {
+        while (true)
+        {
+            yield return null;
+            setTime -= Time.deltaTime;
+
+            if (setTime >= 60)
+            {
+                min = (int)setTime / 60;
+                sec = (int)setTime % 60;
+                time.text = $"{min} m {sec} s";
+            }
+            else if (setTime <= 60)
+            {
+                sec = (int)setTime;
+                time.text = $"{sec} s";
+            }
+            else if (setTime <= 0)
+            {
+                gameOver.SetActive(true);
+                if (hp <= 0)
+                    gameOverTxt.DOText("공룡의 허기를 채우지 못했어요...", 5f);
+                else if (hp >= 0)
+                    gameOverTxt.DOText("공룡의 허기가 채워졌어요!!", 5f);
+            }
+        }
+    }
+
+    IEnumerator Hungry()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(hungryTime);
+            hp -= 1;
+            hungryGage.fillAmount -= 0.05f / hp;
+        }
     }
 }
