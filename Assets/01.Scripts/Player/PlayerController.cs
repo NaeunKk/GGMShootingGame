@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Text gameOverTxt;
     #region Play Time
     [SerializeField] Text time;
-    float setTime = 180;
+    [SerializeField] float setTime = 180;
     int min;
     int sec;
     #endregion
@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour
     #region 피격 관련
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Text hpTxt;
-    public int hp;
+    public float currentHp;
+    [SerializeField] float maxHp;
     BoxCollider2D collider;
     #endregion
 
@@ -42,7 +43,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject gameOver;
     [SerializeField] GameObject gameClear;
     [SerializeField] Image hungryGage;
+    [SerializeField] AudioSource eatingSound;
     #endregion
+
+    bool isDie = false;
 
     private void Awake()
     {
@@ -52,6 +56,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         foot = GetComponent<AudioSource>();
+        currentHp = maxHp;
     }
 
     private void Start()
@@ -62,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        hpTxt.text = $"HP : {hp}";
+        hpTxt.text = $"HP : {currentHp}";
 
         Bounds bounds = collider.bounds;
         overlapPos = new Vector2(bounds.center.x, bounds.min.y);
@@ -90,11 +95,33 @@ public class PlayerController : MonoBehaviour
             move.SetBool("IsMoving", false);
         }
 
-        MoveSound();
         Jump();
 
-        if(hp <= 0)
-            gameOver.SetActive(true);
+        if (currentHp <= 0 && !isDie)
+        {
+            isDie = true;
+            GameOverTextStart();
+        }
+    }
+
+    int index = 1;
+
+    void GameOverTextStart()
+    {
+        gameOver.SetActive(true);
+        Sequence seq = DOTween.Sequence();
+
+        if (currentHp <= 0 && index == 1)
+        {
+            seq.Append(gameOverTxt.DOText("공룡의 허기를 채우지 못했어요...", 5f));
+            index--;
+        }
+        if (currentHp >= 0 && index == 1)
+        {
+            seq.Append(gameOverTxt.DOText("공룡의 허기를 채워줬어요!!", 5f));
+            index--;
+        }
+        seq.AppendCallback(() => Time.timeScale = 0);
     }
 
     void MoveSound()
@@ -120,27 +147,21 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            hp--;
-            hungryGage.fillAmount -= 0.05f;
+            currentHp--;
+            hungryGage.fillAmount = currentHp / maxHp;
             StartCoroutine(ifHit());
         }
-/*
-        if (hp == 0)
-        {
-            JsonManager.instance.Save();
-            gameOver.SetActive(true);
-            //GameManager.instance.DisplayScore();
-        }*/
 
         if (collision.gameObject.CompareTag("Coin"))
         {
-            hp++;
-            hungryGage.fillAmount += 0.05f / hp;
+            eatingSound.Play();
+            currentHp++;
+            hungryGage.fillAmount = currentHp / maxHp;
             PoolManager1.Instance.Enqueue(collision.gameObject);
         }
 
         if (collision.gameObject.CompareTag("Rollback"))
-            hp--; hungryGage.fillAmount -= 0.05f / hp;
+            currentHp--; hungryGage.fillAmount = currentHp / maxHp;
     }
 
     /// <summary>
@@ -167,18 +188,14 @@ public class PlayerController : MonoBehaviour
                 sec = (int)setTime % 60;
                 time.text = $"{min} m {sec} s";
             }
-            else if (setTime <= 60)
+            if (setTime <= 60)
             {
                 sec = (int)setTime;
                 time.text = $"{sec} s";
             }
-            else if (setTime <= 0)
+            if (setTime <= 0)
             {
-                gameOver.SetActive(true);
-                if (hp <= 0)
-                    gameOverTxt.DOText("공룡의 허기를 채우지 못했어요...", 5f);
-                else if (hp >= 0)
-                    gameOverTxt.DOText("공룡의 허기가 채워졌어요!!", 5f);
+                GameOverTextStart();
             }
         }
     }
@@ -188,8 +205,8 @@ public class PlayerController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(hungryTime);
-            hp -= 1;
-            hungryGage.fillAmount -= 0.05f / hp;
+            currentHp--;
+            hungryGage.fillAmount = currentHp / maxHp;
         }
     }
 }

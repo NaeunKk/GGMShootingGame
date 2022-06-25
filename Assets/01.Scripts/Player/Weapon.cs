@@ -48,6 +48,9 @@ public class Weapon : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
         transform.eulerAngles = new Vector3(0, 0, angle + 180);//fixAngle);
+
+        if (PlayerController.instance.currentHp <= 0)
+            StopAllCoroutines();
     }
 
     /// <summary>

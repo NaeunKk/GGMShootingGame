@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     public void PlusScore()
     {
         currentScore++;
-        PlayerController.instance.hp++;
+        PlayerController.instance.currentHp++;
 
         if(JsonManager.instance.Data.maxScore < currentScore)
         {

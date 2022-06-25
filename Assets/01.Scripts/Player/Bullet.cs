@@ -9,11 +9,12 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] Rigidbody2D rb;
     #endregion
+    [SerializeField] AudioSource fireSound;
 
-    //void OnEnable()
-    //{
-    //    rb.AddForce(transform.right * speed, ForceMode2D.Impulse);
-    //}
+    private void OnEnable()
+    {
+        fireSound.Play();
+    }
 
     private void Update()
     {

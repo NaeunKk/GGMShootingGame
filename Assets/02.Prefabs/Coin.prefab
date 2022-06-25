@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 149376527264162614}
   - component: {fileID: 5586126985424925751}
   - component: {fileID: 3915837183823512926}
-  - component: {fileID: -7408904482322165740}
-  m_Layer: 0
+  - component: {fileID: 8333344868056771965}
+  m_Layer: 9
   m_Name: Coin
   m_TagString: Coin
   m_Icon: {fileID: 0}
@@ -105,8 +105,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &-7408904482322165740
-BoxCollider2D:
+--- !u!60 &8333344868056771965
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.033545285}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -128,6 +128,12 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.0670905}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.016163856, y: 0.5036279}
+      - {x: -0.50000006, y: 0.01253598}
+      - {x: -0.50312096, y: -0.36533412}
+      - {x: -0.3839081, y: -0.50280166}
+      - {x: 0.009734303, y: -0.5}
+      - {x: 0.5, y: 0.003951013}
+      - {x: 0.5, y: 0.5}
