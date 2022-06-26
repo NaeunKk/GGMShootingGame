@@ -7,6 +7,7 @@ public class Coin : MonoBehaviour
 {
     #region
     [SerializeField] GameObject coinPrefab;
+    [SerializeField] private float[] yLevel;
     public int coin;
     int spawnTime = 4;
     #endregion
@@ -26,8 +27,9 @@ public class Coin : MonoBehaviour
         {
             while (true)
             {
+                float tgtY = 5.5f;//yLevel[Random.Range(0, yLevel.Length)];
                 coin++;
-                Vector3 randPos = new Vector3(Random.Range(-6, 26), Random.Range(28, 6), 0);
+                Vector3 randPos = new Vector3(Random.Range(-6, 26), tgtY, 0);
                 GameObject temp = PoolManager1.Instance.Dequeue(coinPrefab);
                 temp.transform.position = randPos;
                 yield return new WaitForSeconds(spawnTime);

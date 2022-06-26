@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5586126985424925751}
   - component: {fileID: 3915837183823512926}
   - component: {fileID: 8333344868056771965}
+  - component: {fileID: 7478841467146517020}
   m_Layer: 9
   m_Name: Coin
   m_TagString: Coin
@@ -137,3 +138,15 @@ PolygonCollider2D:
       - {x: 0.009734303, y: -0.5}
       - {x: 0.5, y: 0.003951013}
       - {x: 0.5, y: 0.5}
+--- !u!114 &7478841467146517020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937214769062443082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd588ebe5dbc2e741adf692b8a876a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

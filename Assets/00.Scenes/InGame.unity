@@ -156,7 +156,6 @@ MonoBehaviour:
   - {fileID: 6768163212639925264, guid: f27bcfea20cc19d499da6f2d9daa9f76, type: 3}
   - {fileID: 6089055025068321496, guid: 12467bea2f45c15479b7fc181b345b82, type: 3}
   - {fileID: 2937214769062443082, guid: 549f70285c4c303478581e5e2866061e, type: 3}
-  - {fileID: 2937214769062443082, guid: 549f70285c4c303478581e5e2866061e, type: 3}
 --- !u!4 &58319837
 Transform:
   m_ObjectHideFlags: 0
@@ -1173,6 +1172,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 2937214769062443082, guid: 549f70285c4c303478581e5e2866061e, type: 3}
+  yLevel:
+  - 5.5
+  - 5.5
+  - 5.5
+  - 5.5
+  - 20
+  - 18
+  - 16
+  - 14
+  - 12
   coin: 0
 --- !u!4 &678104163
 Transform:

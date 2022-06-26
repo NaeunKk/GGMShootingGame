@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     bool isDie = false;
+    bool isFinish = false;
 
     private void Awake()
     {
@@ -193,8 +194,9 @@ public class PlayerController : MonoBehaviour
                 sec = (int)setTime;
                 time.text = $"{sec} s";
             }
-            if (setTime <= 0)
+            if (setTime <= 0 && !isFinish)
             {
+                isFinish = true;
                 GameOverTextStart();
             }
         }
