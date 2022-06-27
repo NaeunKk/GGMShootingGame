@@ -34,18 +34,22 @@ public class Weapon : MonoBehaviour
         Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         float angle = Mathf.Atan2(player.position.y - mousePos.y, player.position.x - mousePos.x) * Mathf.Rad2Deg;
         // int fixAngle = 0;
-        if (angle > -85 && angle < 85)
+        if (Mathf.Abs(transform.position.x - mousePos.x) >= 0.3f)
         {
-            playerTrm.localScale = new Vector3(-1, 1, 1);
-            //playerRendere.flipX = true;
-            transform.localScale = new Vector3(-1, -1, 1);
-        }
-        else if ((angle > 95 && angle < 180) || (angle >= -180 && angle < -95))
-        {
-            playerTrm.localScale = new Vector3(1, 1, 1);
-            //fixAngle = 180;
-            //playerRendere.flipX = false;
-            transform.localScale = new Vector3(1, 1, 1);
+            if (angle > -85 && angle < 85)
+            {
+                playerTrm.localScale = new Vector3(-1, 1, 1);
+                //playerRendere.flipX = true;
+                transform.localScale = new Vector3(-1, -1, 1);
+            }
+            else if ((angle > 95 && angle < 180) || (angle >= -180 && angle < -95))
+            {
+                playerTrm.localScale = new Vector3(1, 1, 1);
+                //fixAngle = 180;
+                //playerRendere.flipX = false;
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+
         }
         transform.eulerAngles = new Vector3(0, 0, angle + 180);//fixAngle);
 

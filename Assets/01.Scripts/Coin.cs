@@ -27,9 +27,8 @@ public class Coin : MonoBehaviour
         {
             while (true)
             {
-                float tgtY = 5.5f;//yLevel[Random.Range(0, yLevel.Length)];
                 coin++;
-                Vector3 randPos = new Vector3(Random.Range(-6, 26), tgtY, 0);
+                Vector3 randPos = new Vector3(Random.Range(-6, 26), 20, 0);
                 GameObject temp = PoolManager1.Instance.Dequeue(coinPrefab);
                 temp.transform.position = randPos;
                 yield return new WaitForSeconds(spawnTime);

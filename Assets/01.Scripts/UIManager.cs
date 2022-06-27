@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
     public void Start()
     {
 
-        startFade.DOFade(0, 2f);
+         startFade.DOFade(0, 2f);
 
         _titleTxt = GameObject.Find("Canvas/GameTitle").GetComponent<Text>();
         _titleTxt.DOText("Hungry Dino", 3f);
@@ -52,6 +52,12 @@ public class UIManager : MonoBehaviour
 
 
         //startFadeOut.gameObject.SetActive(false);
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
     }
 
     /// <summary>

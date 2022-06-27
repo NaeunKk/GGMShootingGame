@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
             seq.Append(gameOverTxt.DOText("공룡의 허기를 채워줬어요!!", 5f));
             index--;
         }
-        seq.AppendCallback(() => Time.timeScale = 0);
+        //seq.AppendCallback(() => Time.timeScale = 0);
     }
 
     void MoveSound()
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             eatingSound.Play();
-            currentHp++;
+            currentHp += 0.7f;
             hungryGage.fillAmount = currentHp / maxHp;
             PoolManager1.Instance.Enqueue(collision.gameObject);
         }

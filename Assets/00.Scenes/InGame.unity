@@ -1175,8 +1175,6 @@ MonoBehaviour:
   yLevel:
   - 5.5
   - 5.5
-  - 5.5
-  - 5.5
   - 20
   - 18
   - 16
@@ -1372,7 +1370,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Game Over
+  m_Text: Finish
 --- !u!222 &1174284847
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1591,7 +1589,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 50e0cf3ba19fcac4185b75d03dcb450a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2648,7 +2646,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: sdasda
+  m_Text: 
 --- !u!222 &1912368834
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2664,6 +2662,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9165893110222636196, guid: 0abf527f72060c54198fa9f6a1ccd92b, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 9165893110222636197, guid: 0abf527f72060c54198fa9f6a1ccd92b, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_Data
       value: 
